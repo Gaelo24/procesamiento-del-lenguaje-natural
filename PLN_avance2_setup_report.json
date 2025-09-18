@@ -1,0 +1,15 @@
+{
+  "zip_path": "/mnt/data/Procesamiento de lenguaje natural avance 2.zip",
+  "extract_root": "/mnt/data/PLN_avance2_extracted",
+  "project_root": "/mnt/data/PLN_avance2_extracted/Procesamiento de lenguaje natural",
+  "settings_path": "/mnt/data/PLN_avance2_extracted/Procesamiento de lenguaje natural/config/settings.py",
+  "urls_path": "/mnt/data/PLN_avance2_extracted/Procesamiento de lenguaje natural/config/urls.py",
+  "apps_found": [
+    "analisis"
+  ],
+  "created_files": [
+    "/mnt/data/PLN_avance2_extracted/Procesamiento de lenguaje natural/requirements.txt",
+    "/mnt/data/PLN_avance2_extracted/Procesamiento de lenguaje natural/README_CORRER_PROYECTO.md"
+  ],
+  "tree_preview": "Procesamiento de lenguaje natural/\n  Pipfile\n  Pipfile.lock\n  README_CORRER_PROYECTO.md\n  db.sqlite3\n  manage.py\n  requirements.txt\n  analisis/\n    __init__.py\n    admin.py\n    apps.py\n    forms.py\n    models.py\n    tests.py\n    urls.py\n    views.py\n    migrations/\n      0001_initial.py\n      0002_palabra.py\n      __init__.py\n    templates/\n      analisis/\n        lista.html\n        subir.html\n  config/\n    __init__.py\n    asgi.py\n    settings.py\n    urls.py\n    wsgi.py\n  media/\n    textos/\n      CUENTO.txt"
+}

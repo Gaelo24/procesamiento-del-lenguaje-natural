@@ -1,0 +1,4 @@
+Django>=4.2,<5.3
+django-extensions==3.2.3
+Pillow>=10.0
+wordcloud>=1.9.3

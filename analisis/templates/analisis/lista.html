@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados del Análisis</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; background-color: #f8f9fa; }
+        .container { max-width: 1200px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: #343a40; }
+        .texto-item { margin-top: 40px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .table-container { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { padding: 12px; border: 1px solid #dee2e6; text-align: left; }
+        th { background-color: #007bff; color: white; }
+        a.btn { background-color: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Resultados del Análisis de N-gramas</h1>
+        <a href="{% url 'cargar_texto' %}" class="btn">📤 Subir un Nuevo Texto</a>
+        
+        {% for texto in textos %}
+            <div class="texto-item">
+                <h2>Análisis de: {{ texto.titulo }}</h2>
+                <p><strong>Archivo:</strong> {{ texto.archivo.name }} | <strong>Fecha:</strong> {{ texto.fecha_subida|date:"d M Y, H:i" }}</p>
+                
+                <div class="grid">
+                    <div class="table-container">
+                        <h3>Unigramas (Palabras)</h3>
+                        <table>
+                            <thead><tr><th>Palabra</th><th>Frecuencia</th></tr></thead>
+                            <tbody>
+                                {% for item in texto.palabras.all|dictsortreversed:"frecuencia" %}
+                                <tr><td>{{ item.contenido }}</td><td>{{ item.frecuencia }}</td></tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-container">
+                        <h3>Bigramas (Pares)</h3>
+                        <table>
+                            <thead><tr><th>Bigrama</th><th>Frecuencia</th></tr></thead>
+                            <tbody>
+                                {% for item in texto.bigramas.all|dictsortreversed:"frecuencia" %}
+                                <tr><td>{{ item.contenido|join:" " }}</td><td>{{ item.frecuencia }}</td></tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-container">
+                        <h3>Trigramas (Tríos)</h3>
+                        <table>
+                            <thead><tr><th>Trigrama</th><th>Frecuencia</th></tr></thead>
+                            <tbody>
+                                {% for item in texto.trigramas.all|dictsortreversed:"frecuencia" %}
+                                <tr><td>{{ item.contenido|join:" " }}</td><td>{{ item.frecuencia }}</td></tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>Aún no has analizado ningún texto.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
