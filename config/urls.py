@@ -20,14 +20,20 @@ from django.conf import settings
 from django.conf.urls.static import static
 from analisis.views import home  
 from django.http import HttpResponse
+from django.shortcuts import render 
+
+#def home(request):
+#    return HttpResponse("""
+#        <h1>Bienvenido al Sistema de Procesamiento de Lenguaje Natural</h1>
+#        <p><a href='/subir/'>Subir texto</a></p>
+#        <p><a href='/lista/'>Ver textos analizados</a></p>
+#        <p><a href='/admin/'>Administración</a></p>
+#        <p><a href='/sugerir/'>Autocompletar</a></p>
+#                        
+#    """)
 
 def home(request):
-    return HttpResponse("""
-        <h1>Bienvenido al Sistema de Procesamiento de Lenguaje Natural</h1>
-        <p><a href='/subir/'>Subir texto</a></p>
-        <p><a href='/lista/'>Ver textos analizados</a></p>
-        <p><a href='/admin/'>Administración</a></p>
-    """)
+    return render(request, 'home.html' )
 
 
 urlpatterns = [

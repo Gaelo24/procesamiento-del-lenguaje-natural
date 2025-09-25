@@ -28,7 +28,7 @@ STOP_WORDS = tuple([
     "yo", "él", "ése", "ésa", "ésos", "ésas"
 ])
 
-def dividir_texto(texto: str) -> list:
+def tokenizar(texto: str) -> list:
     """Divide un texto en palabras (letras y acentos incluidos)."""
     texto = texto.lower()
     return re.findall(r"[a-záéíóúñü]+", texto)
