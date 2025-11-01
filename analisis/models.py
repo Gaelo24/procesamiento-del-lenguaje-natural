@@ -11,7 +11,6 @@ class TextoAnalizado(models.Model):
     def __str__(self):
         return self.titulo
 
-    # MÉTODOS CORREGIDOS: usan 'self.palabras'
     def palabras_unicas(self):
         return self.palabras.count()
 
@@ -19,7 +18,7 @@ class TextoAnalizado(models.Model):
         resultado = self.palabras.aggregate(total=Sum('frecuencia'))
         return resultado['total'] or 0
 
-class Palabra(models.Model): # Este es tu modelo de Unigramas
+class Palabra(models.Model): #modelo de Unigramas
     texto = models.ForeignKey(TextoAnalizado, on_delete=models.CASCADE, related_name='palabras')
     contenido = models.CharField(max_length=255)
     frecuencia = models.PositiveIntegerField()
@@ -27,17 +26,17 @@ class Palabra(models.Model): # Este es tu modelo de Unigramas
     def __str__(self):
         return f"'{self.contenido}' ({self.frecuencia} veces)"
 
-class Bigrama(models.Model): # NUEVO MODELO
+class Bigrama(models.Model): 
     texto = models.ForeignKey(TextoAnalizado, on_delete=models.CASCADE, related_name='bigramas')
-    contenido = models.JSONField() # Guarda la tupla, ej: ["el", "perro"]
+    contenido = models.JSONField() 
     frecuencia = models.PositiveIntegerField()
 
     def __str__(self):
         return f"'{' '.join(self.contenido)}' ({self.frecuencia} veces)"
 
-class Trigrama(models.Model): # NUEVO MODELO
+class Trigrama(models.Model): 
     texto = models.ForeignKey(TextoAnalizado, on_delete=models.CASCADE, related_name='trigramas')
-    contenido = models.JSONField() # Guarda la tupla, ej: ["el", "perro", "come"]
+    contenido = models.JSONField() 
     frecuencia = models.PositiveIntegerField()
 
     def __str__(self):

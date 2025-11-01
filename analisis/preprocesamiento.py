@@ -169,11 +169,10 @@ class AnalizadorLexico:
             self.agregar_token("OParitmetico", "/")
 
 
-            # En analisis/preprocesamiento.py ... al final del archivo
 
-# --- SECCIÓN 3: LÓGICA PARA EL TINY PARSER (EXAMEN 2) ---
+# --- SECCIÓN 3: LÓGICA PARA EL TINY PARSER ---
 
-# --- 1. LEXER (Analizador Léxico del Tiny Parser) ---
+# --- Analizador Léxico del Tiny ---
 
 class Token:
     """Clase para representar un token (tipo y valor)"""
@@ -271,7 +270,7 @@ class Lexer:
             raise Exception(f"Error Léxico: Carácter '{self.char_actual}' no válido.")
         return Token(TT_EOF, None)
 
-# --- 2. PARSER (Analizador Sintáctico Descendente Recursivo) ---
+# ---Analizador Sintáctico Descendente ---
 
 class Parser:
     def __init__(self, lexer):

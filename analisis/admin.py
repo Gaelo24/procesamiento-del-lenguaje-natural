@@ -5,4 +5,3 @@ admin.site.register(TextoAnalizado)
 admin.site.register(Palabra)
 admin.site.register(Bigrama)   
 admin.site.register(Trigrama)
-# Register your models here.

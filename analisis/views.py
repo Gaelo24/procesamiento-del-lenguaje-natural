@@ -74,7 +74,7 @@ def cargar_texto(request):
                     texto_obj.nube_imagen.save(filename, ContentFile(buf.getvalue()), save=True)
 
             except Exception as e:
-                print(f"❌ ERROR CRÍTICO DURANTE EL PROCESAMIENTO: {e}")
+                print(f" ERROR CRÍTICO DURANTE EL PROCESAMIENTO: {e}")
 
             return redirect("listar_textos")
     else:
@@ -162,11 +162,10 @@ def reconocedor_view(request):
 
 
 
-    # En analisis/preprocesamiento.py ... al final del archivo
 
-# --- SECCIÓN 3: LÓGICA PARA EL TINY PARSER (EXAMEN 2) ---
+# --- SECCIÓN: TINY   ---
 
-# --- 1. LEXER (Analizador Léxico del Tiny Parser) ---
+# --- Analizador Léxico del Tiny  ---
 
 class Token:
     """Clase para representar un token (tipo y valor)"""
@@ -349,14 +348,13 @@ class Parser:
         else:
             self.error("Se esperaba '(', un Identificador o un Número")
 
-            # Pega esto al final de analisis/views.py
 
 def tiny_parser_view(request):
     context = {}
     if request.method == 'POST' and request.FILES.get('archivo_tiny'):
         archivo_subido = request.FILES['archivo_tiny']
         
-        # Leemos el contenido del archivo
+        # Leemos el contenido de archivo
         try:
             texto = archivo_subido.read().decode('utf-8')
         except Exception as e:
