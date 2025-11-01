@@ -4,22 +4,23 @@
     <meta charset="UTF-8">
     <title>Resultados del Análisis</title>
     <style>
-        body { font-family: sans-serif; margin: 40px; background-color: #f8f9fa; }
-        .container { max-width: 1200px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
-        h1, h2, h3 { color: #343a40; }
-        .texto-item { margin-top: 40px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        body { font-family: sans-serif; margin: 40px; background-color: #f8f9fa; color: #333; }
+        .container { max-width: 1200px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+        h1, h2 { color: #0056b3; }
+        .texto-item { margin-top: 40px; border-top: 2px solid #007bff; padding-top: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .table-container { overflow-x: auto; }
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { padding: 12px; border: 1px solid #dee2e6; text-align: left; }
-        th { background-color: #007bff; color: white; }
-        a.btn { background-color: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; }
+        th, td { padding: 10px; border: 1px solid #dee2e6; text-align: left; }
+        th { background-color: #343a40; color: white; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        a.btn { background-color: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin-bottom: 20px; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>📊 Resultados del Análisis de N-gramas</h1>
-        <a href="{% url 'cargar_texto' %}" class="btn">📤 Subir un Nuevo Texto</a>
+        <a href="{% url 'cargar_texto' %}" class="btn">Subir un Nuevo Texto</a>
         
         {% for texto in textos %}
             <div class="texto-item">
@@ -32,7 +33,7 @@
                         <table>
                             <thead><tr><th>Palabra</th><th>Frecuencia</th></tr></thead>
                             <tbody>
-                                {% for item in texto.palabras.all|dictsortreversed:"frecuencia" %}
+                                {% for item in texto.palabras.all|dictsortreversed:"frecuencia"|slice:":20" %}
                                 <tr><td>{{ item.contenido }}</td><td>{{ item.frecuencia }}</td></tr>
                                 {% endfor %}
                             </tbody>
@@ -44,7 +45,7 @@
                         <table>
                             <thead><tr><th>Bigrama</th><th>Frecuencia</th></tr></thead>
                             <tbody>
-                                {% for item in texto.bigramas.all|dictsortreversed:"frecuencia" %}
+                                {% for item in texto.bigramas.all|dictsortreversed:"frecuencia"|slice:":20" %}
                                 <tr><td>{{ item.contenido|join:" " }}</td><td>{{ item.frecuencia }}</td></tr>
                                 {% endfor %}
                             </tbody>
@@ -56,7 +57,7 @@
                         <table>
                             <thead><tr><th>Trigrama</th><th>Frecuencia</th></tr></thead>
                             <tbody>
-                                {% for item in texto.trigramas.all|dictsortreversed:"frecuencia" %}
+                                {% for item in texto.trigramas.all|dictsortreversed:"frecuencia"|slice:":20" %}
                                 <tr><td>{{ item.contenido|join:" " }}</td><td>{{ item.frecuencia }}</td></tr>
                                 {% endfor %}
                             </tbody>

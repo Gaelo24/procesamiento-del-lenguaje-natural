@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tiny Parser</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; background-color: #f8f9fa; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+        h1 { color: #0056b3; }
+        button { font-size: 1em; padding: 10px 20px; border-radius: 5px; border: none; background-color: #007bff; color: white; cursor: pointer; transition: background-color 0.3s; }
+        button:hover { background-color: #0056b3; }
+        .resultado { margin-top: 25px; padding: 20px; border-radius: 4px; font-size: 1.2em; }
+        .aceptado { background-color: #e9f7ef; border-left: 5px solid #28a745; }
+        .rechazado { background-color: #f8d7da; border-left: 5px solid #dc3545; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> Tiny Parser </h1>
+        <p>Sube un archivo <code>ProgramaTiny.txt</code> para validar su sintaxis.</p>
+        
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="archivo_tiny" required>
+            <button type="submit">Validar Programa</button>
+        </form>
+
+        {% if resultado %}
+            {% if es_error %}
+                <div class="resultado rechazado">
+                    <h2>Resultado: {{ resultado }}</h2>
+                    <p>{{ detalle }}</p>
+                </div>
+            {% else %}
+                <div class="resultado aceptado">
+                    <h2>Resultado: {{ resultado }}</h2>
+                    <p>{{ detalle }}</p>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>

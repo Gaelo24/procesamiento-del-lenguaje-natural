@@ -7,8 +7,8 @@
         /* --- Estilos Generales --- */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
+            background-color: #000000;
+            color: #ffffff;
             margin: 0;
             display: flex;
             justify-content: center;
@@ -19,16 +19,16 @@
         /* --- Contenedor Principal --- */
         .container {
             text-align: center;
-            background-color: white;
+            background-color: rgb(46, 46, 46);
             padding: 40px 50px;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
+            max-width: 700px;
         }
 
         /* --- Encabezado y Título --- */
         .header h1 {
-            color: #0056b3;
+            color: #fc0404;
             font-size: 2.2em;
             margin-bottom: 10px;
         }
@@ -39,38 +39,59 @@
             margin-bottom: 30px;
         }
         
- 
+        /* --- Icono (Emoji) --- */
+        .header .icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
         /* --- Botones de Navegación --- */
-        .nav-links a {
-            display: inline-block;
-            background-color: #007bff;
+        .nav-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .nav-grid a {
+            background-color: #e90074;
             color: white;
-            padding: 12px 25px;
-            margin: 5px;
-            border-radius: 5px;
+            padding: 15px 20px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
         
+        .nav-grid a:hover {
+            background-color: #970778;
+            transform: translateY(-3px); /* Efecto de levantar el botón */
+        }
         
-        .nav-links a.admin-link {
+        /* Estilo especial para el link de Admin */
+        .nav-grid a.admin-link {
             background-color: #6c757d;
         }
         
-
+        .nav-grid a.admin-link:hover {
+            background-color: #5a6268;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <div class="header">
-            <h1>Bienvenido al Sistema</h1>
+            <div class="icon"></div>
+            <h1>Sistema de Procesamiento de Lenguaje Natural</h1>
         </div>
         
-        <div class="nav-links">
-            <a href="{% url 'cargar_texto' %}">Subir Texto</a>
-            <a href="{% url 'listar_textos' %}">Ver Análisis</a>
-            <a href="{% url 'autocomplementar' %}">Probar Autocompletado</a>
+        <div class="nav-grid">
+            <a href="{% url 'cargar_texto' %}">Subir texto</a>
+            <a href="{% url 'autocompletar' %}">Prototipo de Autocompletado</a>
+            <a href="{% url 'reconocedor' %}">Reconocedor Léxico</a>
+            <a href="{% url 'tiny_parser' %}">Tiny Parser</a> <a href="/admin/" class="admin-link">Administración</a>
             <a href="/admin/" class="admin-link">Administración</a>
         </div>
     </div>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reconocedor Léxico</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; background-color: #000000; }
+        .container { max-width: 800px; margin: auto; background: rgb(80, 80, 80); padding: 30px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+        h1 { color: #000000; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #343a40; color: white; }
+        pre { margin: 0; white-space: pre-wrap; word-wrap: break-word; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> Reconocedor de Patrones Lexicográficos</h1>
+        <p>Sube un archivo de código fuente para analizar sus tokens.</p>
+        
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="archivo_codigo" required>
+            <button type="submit">Analizar Archivo</button>
+        </form>
+
+        {% if tokens %}
+            <hr style="margin-top: 30px;">
+            <h3>Resultados del Análisis:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo de Token</th>
+                        <th>Lexema (Valor)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tipo, lexema in tokens %}
+                    <tr>
+                        <td>{{ tipo }}</td>
+                        <td><pre>{{ lexema|escape }}</pre></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+</body>
+</html>
